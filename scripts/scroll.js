@@ -39,11 +39,13 @@ class Scroll {
   pageUp(percent = 0.9) {
     this.element.scrollBy({ top: -window.innerHeight * percent, behavior: this.behavior })
   }
+  // Force instant scroll to top / bottom
+  // Reason: The smooth scrolling is too slow on Chrome.
   top() {
-    this.element.scrollTo({ top: 0, behavior: this.behavior })
+    this.element.scrollTo({ top: 0, behavior: 'auto' })
   }
   bottom() {
-    this.element.scrollTo({ top: this.element.scrollHeight, behavior: this.behavior })
+    this.element.scrollTo({ top: this.element.scrollHeight, behavior: 'auto' })
   }
   // Saka Key – https://key.saka.io
   //
