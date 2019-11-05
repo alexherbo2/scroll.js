@@ -19,6 +19,6 @@ More examples at [Krabby].
 
 - [Create a keyboard interface to the web]
 
-[Krabby]: https://github.com/alexherbo2/krabby
+[Krabby]: https://krabby.netlify.com
 [Modal]: https://github.com/alexherbo2/modal.js
 [Create a keyboard interface to the web]: https://alexherbo2.github.io/blog/chrome/create-a-keyboard-interface-to-the-web/
