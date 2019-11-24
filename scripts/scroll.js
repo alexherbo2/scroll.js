@@ -1,7 +1,7 @@
 class Scroll {
   constructor() {
     this.element = document.scrollingElement
-    this.step = 60
+    this.step = 70
     this.behavior = 'smooth'
     this.animation = null
   }
