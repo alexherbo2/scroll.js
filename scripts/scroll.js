@@ -54,16 +54,28 @@ class Scroll {
   // After that, there is a delay before the second keydown event is fired.
   // The third and all subsequent keydown events fire in rapid succession.
   // event.repeat is false for the first keydown event, but true for all others.
-  // The delay (70 and 500) are carefully selected to keep scrolling smooth, but
+  // The delay (70 and 700) are carefully selected to keep scrolling smooth, but
   // prevent unexpected scrolling after the user has released the scroll key.
   // Relying on keyup events exclusively to stop scrolling is unreliable.
   //
   // https://github.com/lusakasa/saka-key/tree/master/src/modes/command/client/commands/scroll
+  //
+  // Engineering
+  // ‾‾‾‾‾‾‾‾‾‾‾
+  // Decision:
+  // – Start smooth scrolling animation on key-down and end smooth scrolling animation on key-up.
+  // Motivation:
+  // – Smooth scrolling is surprisingly tricky to get “just right”.
+  // – My early attempts all resulted in scrolling for a fraction of a second, then a tiny pause, then smooth scrolling as you’d expect.
+  // – I learned that, calling cancelAnimationFrame was a bad idea.
+  // – I tried a timeout based solution.
+  //
+  // https://github.com/lusakasa/saka-key/blob/master/notes/engineering.md
   animate(animation, repeat) {
     // Cancel potential animation being proceeded
     cancelAnimationFrame(this.animation)
     let start = null
-    const delay = repeat ? 70 : 500
+    const delay = repeat ? 70 : 700
     const step = (timeStamp) => {
       if (start === null) {
         start = timeStamp
@@ -77,5 +89,15 @@ class Scroll {
       }
     }
     requestAnimationFrame(step)
+    // End smooth scrolling animation on key-up.
+    const onKeyUp = (event) => {
+      cancelAnimationFrame(this.animation)
+    }
+    const once = {
+      once: true
+    }
+    if (! repeat) {
+      this.element.addEventListener('keyup', onKeyUp, once)
+    }
   }
 }
