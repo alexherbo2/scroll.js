@@ -15,6 +15,10 @@ modal.map('Command', ['KeyK'], (event) => scroll.up(event.repeat), 'Scroll up')
 
 More examples at [Krabby].
 
+## Credits
+
+- [Saka Key] ([@eejdoowad]) for the initial implementation.
+
 ## References
 
 - [Create a keyboard interface to the web]
@@ -22,3 +26,5 @@ More examples at [Krabby].
 [Krabby]: https://krabby.netlify.com
 [Modal]: https://github.com/alexherbo2/modal.js
 [Create a keyboard interface to the web]: https://alexherbo2.github.io/blog/chrome/create-a-keyboard-interface-to-the-web/
+[Saka Key]: https://key.saka.io
+[@eejdoowad]: https://github.com/eejdoowad
