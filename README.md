@@ -18,13 +18,16 @@ More examples at [Krabby].
 ## Credits
 
 - [Saka Key] ([@eejdoowad]) for the initial implementation.
+- [@AdamWagner] for his work in [#1] to unify scrolling mechanisms.
 
 ## References
 
 - [Create a keyboard interface to the web]
 
+[#1]: https://github.com/alexherbo2/scroll.js/issues/1
 [Krabby]: https://krabby.netlify.com
 [Modal]: https://github.com/alexherbo2/modal.js
 [Create a keyboard interface to the web]: https://alexherbo2.github.io/blog/chrome/create-a-keyboard-interface-to-the-web/
 [Saka Key]: https://key.saka.io
 [@eejdoowad]: https://github.com/eejdoowad
+[@AdamWagner]: https://github.com/AdamWagner
