@@ -1,4 +1,5 @@
 class Scroll {
+
   constructor() {
     this.element = document.scrollingElement
     this.step = 70
@@ -6,24 +7,31 @@ class Scroll {
     this.pageFactor = 0.9
     this.animation = null
   }
+
   get fastStep() {
     return this.step * this.fastFactor
   }
+
   get pageScroll() {
     return window.innerHeight * this.pageFactor
   }
+
   down(repeat) {
     this.animate('down', this.step, repeat)
   }
+
   up(repeat) {
     this.animate('up', this.step, repeat)
   }
+
   right(repeat) {
     this.animate('right', this.step, repeat)
   }
+
   left(repeat) {
     this.animate('left', this.step, repeat)
   }
+
   // Honor pageScroll the first time a key is pressed, then fastStep in rapid succession.
   pageDown(repeat) {
     if (repeat) {
@@ -32,6 +40,7 @@ class Scroll {
       this.element.scrollBy({ top: this.pageScroll, behavior: 'smooth' })
     }
   }
+
   pageUp(repeat) {
     if (repeat) {
       this.animate('up', this.fastStep, repeat)
@@ -39,17 +48,20 @@ class Scroll {
       this.element.scrollBy({ top: -this.pageScroll, behavior: 'smooth' })
     }
   }
+
   // Do not use the built-in methods.
   // Reason: The smooth scrolling is too slow on Chrome.
   //
-  // Scrolls the amount needed to reach top / bottom.
+  // Scrolls the amount needed to reach top/bottom.
   // Reason: Animations are relative.
   top(repeat) {
     this.animate('up', this.element.scrollTop, repeat)
   }
+
   bottom(repeat) {
     this.animate('down', this.element.scrollHeight - this.element.scrollTop, repeat)
   }
+
   // Saka Key – https://key.saka.io
   //
   // Scrolls the selected element smoothly.  Works around the quirks of keydown events.
@@ -74,9 +86,9 @@ class Scroll {
   // – I tried a timeout based solution.
   //
   // https://github.com/lusakasa/saka-key/blob/master/notes/engineering.md
-  //
+
   // Scroll.directions is a { down, up, right, left } interface around scrollTop and scrollLeft properties.
-  // To do: Use public static fields when supported by Firefox
+  // TODO: Use public static fields when supported by Firefox
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Class_fields#Public_static_fields
   static directions() {
     const direction = (direction, sign) => ({ direction, sign })
@@ -87,6 +99,7 @@ class Scroll {
       left: direction('scrollLeft', -1)
     }
   }
+
   // Function to unify scrolling mechanisms.
   animate(direction, step, repeat) {
     // Use Scroll.directions to abstract scrollTop and scrollLeft, and set its value (positive or negative) accordingly.
@@ -137,6 +150,7 @@ class Scroll {
       this.element.addEventListener('keyup', onKeyUp, once)
     }
   }
+
   scrollProgress(scrollTop, scrollLeft) {
     return (scrollTop !== this.element.scrollTop) || (scrollLeft !== this.element.scrollLeft)
   }
