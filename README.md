@@ -12,7 +12,7 @@ A live demo can be found in [Krabby].
 
 ## Installation
 
-Add [`scroll.js`](scripts/scroll.js) to your project.
+Add [`scroll.js`](src/scroll.js) to your project.
 
 ## Usage
 
@@ -29,7 +29,7 @@ modal.map('Command', ['KeyK'], ({ repeat }) => scroll.up(repeat), 'Scroll up', '
 
 You can find some examples in [Krabby].
 
-See the [source](scripts/scroll.js) for a complete reference.
+See the [source](src/scroll.js) for a complete reference.
 
 ## Credits
 
