@@ -1,11 +1,14 @@
 class Scroll {
 
   constructor() {
-    this.element = document.scrollingElement
     this.step = 70
     this.fastFactor = 3
     this.pageFactor = 0.9
     this.animation = null
+  }
+
+  get element() {
+    return Scroll.findScrollable(document.activeElement)
   }
 
   get fastStep() {
@@ -153,5 +156,30 @@ class Scroll {
 
   scrollProgress(scrollTop, scrollLeft) {
     return (scrollTop !== this.element.scrollTop) || (scrollLeft !== this.element.scrollLeft)
+  }
+
+  // Helpers ───────────────────────────────────────────────────────────────────
+
+  static findScrollable(element = document.activeElement) {
+    if (element === null) {
+      return document.scrollingElement
+    }
+    if (Scroll.isScrollable(element)) {
+      return element
+    }
+    return Scroll.findScrollable(element.parentElement)
+  }
+
+  // An element is scrollable if:
+  // – its `overflow` property is `scroll` or `auto` and
+  // – its `scrollWidth` is greater than its `clientWidth` or
+  // – its `scrollHeight` is greater than its `clientHeight`.
+  static isScrollable(element) {
+    // This is a special case.
+    if (element === document.body) {
+      return false
+    }
+    const style = getComputedStyle(element)
+    return ((element.scrollWidth > element.clientWidth) || (element.scrollHeight > element.clientHeight)) && /(scroll|auto)/.test(style.overflow)
   }
 }
