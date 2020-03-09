@@ -1,14 +1,20 @@
 class Scroll {
 
   constructor() {
+    this.element = document.scrollingElement
     this.step = 70
     this.fastFactor = 3
     this.pageFactor = 0.9
     this.animation = null
+    this.trackScrollingElement()
   }
 
-  get element() {
-    return Scroll.findScrollable(document.activeElement)
+  trackScrollingElement() {
+    const onFocus = (event) => {
+      this.element = Scroll.findScrollable(document.activeElement)
+    }
+    window.addEventListener('focus', onFocus, true)
+    window.addEventListener('blur', onFocus, true)
   }
 
   get fastStep() {
