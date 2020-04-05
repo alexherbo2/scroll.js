@@ -8,7 +8,7 @@ Scrolls web pages smoothly.  Works around the quirks of [keydown] events.
 
 A live demo can be found in [Krabby].
 
-[Krabby]: https://krabby.netlify.com
+[Krabby]: https://krabby.netlify.app
 
 ## Installation
 
